@@ -11,9 +11,6 @@ public class Initialize : MonoBehaviour
     public GameObject[] UIList;
 
     public int coins;
-    public int[] items;
-
-    public Weapon[] weapons;
 
     private PlayerData data;
 
@@ -48,14 +45,12 @@ public class Initialize : MonoBehaviour
     }
 
     private void CreatePlayerData() {
-        int[] temp = {0};
-        data = new PlayerData(0,0,temp);
+        data = new PlayerData(0,0);
     }
 
     public void SaveData()
     {
         data.coins = getCoins();
-        data.items = getItems();
         string savePath = path;
 
         Debug.Log("Saving Data at " + savePath);
@@ -75,18 +70,6 @@ public class Initialize : MonoBehaviour
         data = JsonUtility.FromJson<PlayerData>(json);
         Debug.Log(data.ToString());
         coins = data.getCoins();
-        items = data.getItems();
-        Debug.Log(items);
-
-        for(int i = 0; i<weapons.Length; i++) {
-            weapons[i].isOwned = false; 
-        }
-
-        for (int i = 0; i<items.Length; i++) {
-            int j = items[i];
-            Weapon w = weapons[j];
-            w.isOwned = true;
-        }
     }
     public int getCoins() {
         return coins;
@@ -95,17 +78,6 @@ public class Initialize : MonoBehaviour
     public void addCoins(int i) {
         coins += i;
         SaveData();
-    }
-
-    public int[] getItems() {
-        List<int> tempList = new List<int>();
-        for (int i = 0; i<weapons.Length; i++) {
-            if (weapons[i].isOwned) {
-                tempList.Add(weapons[i].itemID);
-            }
-        }
-        int[] tempArr = tempList.ToArray();
-        return tempArr;
     }
 
 

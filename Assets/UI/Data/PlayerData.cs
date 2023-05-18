@@ -8,11 +8,10 @@ public class PlayerData
     public int gems;
     public int[] items;
 
-    public PlayerData(int coins, int gems, int[] items)
+    public PlayerData(int coins, int gems)
     {
         this.gems = gems;
         this.coins = coins;
-        this.items = items;
     }
 
     public override string ToString()
@@ -26,9 +25,5 @@ public class PlayerData
 
     public void setCoins(int i) {
         this.coins = i;
-    }
-
-    public int[] getItems() {
-        return items;
     }
 }

@@ -12,6 +12,4 @@ public class Item : ScriptableObject
     public int baseCost;
     public bool isOwned;
     public bool isEquipped;
-
-    public string type;
 }
